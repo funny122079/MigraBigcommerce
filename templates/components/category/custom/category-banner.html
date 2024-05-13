@@ -1,0 +1,103 @@
+<style>
+    .collection-hero-wrapper {
+        position: relative;
+        display: -ms-flexbox;
+        display: flex;
+        align-items: center;
+        min-height: 300px;
+        margin-bottom: 70px;
+    }
+
+    .collection-hero-image-wrapper {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .collection-hero-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .collection-hero-image.d--image {
+        display: block;
+    }
+
+    .collection-hero-image.m--image {
+        display: none;
+    }
+
+    .collection-hero-title-wrapper {
+        position: relative;
+        width: 100%;
+        padding-top: 70px;
+        padding-bottom: 70px;
+    }
+
+    .collection-hero-blank-wrapper .collection-hero-title-wrapper {
+        text-align: center;
+    }
+
+    .collection-hero-title-wrapper h2.heading {
+        color: #FFFFFF;
+    }
+
+    .collection-hero-blank-wrapper .collection-hero-title-wrapper h2.heading {
+        color: rgba(var(--color-foreground));
+    }
+
+    @media screen and (max-width: 749px) {
+        .collection-hero-wrapper {
+            min-height: 200px;
+            margin-bottom: 50px;
+        }
+        
+        .collection-hero-image.d--image {
+            display: none;
+        }
+        
+        .collection-hero-image.m--image {
+            display: block;
+        }
+    
+        .collection-hero-title-wrapper {
+            text-align: center;
+            padding-top: 50px;
+            padding-bottom: 50px;
+        }
+    }
+</style>
+
+<div class="collection-hero-container">
+    <div class="{{#if category.image}}collection-hero-wrapper{{else}}collection-hero-blank-wrapper{{/if}}">
+        <div class="collection-hero-image-wrapper">
+            {{#if category.image}}
+                <img src="{{getImage category.image 'thumbnail'}}" alt="Collection Hero Banner" title="Collection Hero Banner" data-sizes="auto" 
+                srcset="{{getImage category.image 'thumbnail'}} 80w, 
+                {{getImage category.image 'thumbnail'}} 160w, 
+                {{getImage category.image 'thumbnail'}} 320w, 
+                {{getImage category.image 'thumbnail'}} 640w, 
+                {{getImage category.image 'thumbnail'}} 960w, 
+                {{getImage category.image 'thumbnail'}} 1280w, 
+                {{getImage category.image 'thumbnail'}} 1920w, 
+                {{getImage category.image 'thumbnail'}} 2560w" 
+                data-srcset="{{getImage category.image 'thumbnail'}} 80w, 
+                {{getImage category.image 'thumbnail'}} 160w, 
+                {{getImage category.image 'thumbnail'}} 320w, 
+                {{getImage category.image 'thumbnail'}} 640w, 
+                {{getImage category.image 'thumbnail'}} 960w, 
+                {{getImage category.image 'thumbnail'}} 1280w, 
+                {{getImage category.image 'thumbnail'}} 1920w, 
+                {{getImage category.image 'thumbnail'}} 2560w" 
+                class="collection-hero-image lazyautosizes lazyloaded">
+            {{/if}}
+        </div>
+
+      <div class="collection-hero-title-wrapper page-width">
+        <h2 class="heading">{{category.name}}</h2>
+      </div>
+    </div>
+  </div>

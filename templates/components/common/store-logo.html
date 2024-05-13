@@ -1,0 +1,19 @@
+<a href="{{urls.home}}" class="header__heading-link link link--text focus-inset" data-header-logo-link>
+    {{#if settings.store_logo.image}}
+        {{#if theme_settings.logo_size '===' 'original'}}
+        <img class="header-logo-image-unknown-size"
+             src="{{getImage settings.store_logo.image 'logo_size'}}"
+             alt="{{settings.store_logo.title}}"
+             title="{{settings.store_logo.title}}">
+        {{else}}
+        <div class="header__heading-logo-wrapper">
+            <img class="header__heading-logo motion-reduce"
+                 src="{{getImage settings.store_logo.image 'logo_size'}}"
+                 srcset="{{getImageSrcset1x2x settings.store_logo.image theme_settings.logo_size}}"
+                 alt="{{settings.store_logo.title}}"
+                 title="{{settings.store_logo.title}}">
+        </div>
+        {{/if}}
+    {{else}}
+    {{/if}}
+</a>

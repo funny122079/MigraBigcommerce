@@ -1,0 +1,34 @@
+---
+category:
+    shop_by_price: true
+    products:
+        limit: {{theme_settings.categorypage_products_per_page}}
+---
+{{inject "categoryProductsPerPage" theme_settings.categorypage_products_per_page}}
+
+
+{{#partial "hero"}}
+{{> components/category/custom/category-banner category=category}}
+{{{region name="ammo_category_top"}}}
+
+<div class="page product-list__container" id="product-listing-container">
+    {{> components/category/product-listing}}
+</div>
+
+{{{region name="ammo_category_below"}}}
+{{/partial}}
+{{> layout/base}}
+
+<style>
+    .page {
+        margin: 0px;    
+    }
+    
+    .product-list__container {
+        padding-bottom: 20px;
+    }
+    
+    .product-list__container ul {
+        margin-bottom: 0;
+    }
+</style>

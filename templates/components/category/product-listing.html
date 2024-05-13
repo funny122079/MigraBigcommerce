@@ -1,0 +1,111 @@
+{{inject 'noCompareMessage' (lang 'compare.no_compare')}}
+
+{{#if category.products}}
+
+    <div {{#if settings.data_tag_enabled}} data-list-name="Category: {{category.name}}" {{/if}} class="page-width">
+        {{#if theme_settings.product_list_display_mode '===' 'grid'}}
+            {{#if settings.data_tag_enabled}}
+                {{> components/products/grid products=category.products show_compare=category.show_compare theme_settings=theme_settings event="list" }}
+            {{else}}
+                {{> components/products/grid products=category.products show_compare=category.show_compare theme_settings=theme_settings}}
+            {{/if}}
+        {{else}}
+            {{#if settings.data_tag_enabled}}
+                {{> components/products/list products=category.products show_compare=category.show_compare theme_settings=theme_settings event="list" }}
+            {{else}}
+                {{> components/products/list products=category.products show_compare=category.show_compare theme_settings=theme_settings}}
+            {{/if}}
+        {{/if}}
+    </div>
+
+{{else}}
+    {{#if category.search_error}}
+        <p>{{lang 'search.errorMessage'}}</p>
+    {{else}}
+    
+    <div class="section-template__product-grid-padding">
+        <div class="product-grid-container scroll-trigger animate--slide-in">
+            <div class="collection collection--empty page-width" id="product-grid" >
+                <div class="loading-overlay gradient"></div>
+                <div class="title-wrapper center">
+                  <h2 class="title title--primary">
+                      {{category.subcategory}}
+                      {{category.parent}}
+                    No products found
+                    <br>
+                    Use fewer filters or
+                    <a class="underlined-link link" href="{{category.url}}">remove all</a>
+                  </h2>
+                </div>
+            </div>
+        </div>
+    </div>
+        
+        
+    {{/if}}
+{{/if}}
+
+
+<style>
+    .section-template__product-grid-padding {
+        padding-top: 0px;
+        padding-bottom: 27px;
+    }
+    
+    .scroll-trigger:not(.scroll-trigger--offscreen).animate--slide-in {
+        animation: slideIn 0.6s cubic-bezier(0, 0, 0.3, 1) forwards;
+        animation-delay: calc(var(--animation-order)* 75ms);
+    }
+    
+    .collection--empty .title-wrapper {
+        margin-top: 100px;
+        margin-bottom: 150px;
+    }
+    
+    .center {
+        text-align: center;
+    }
+    
+    .link {
+        cursor: pointer;
+        display: inline-block;
+        border: none;
+        box-shadow: none;
+        text-underline-offset: 3px;
+        color: black;
+        background-color: transparent;
+        font-size: 14px;
+        font-family: inherit;
+    }
+    
+    .title .link {
+        font-size: inherit;
+    }
+    
+    .underlined-link {
+        color: #000000d9;
+        text-underline-offset: 3px;
+        text-decoration-thickness: 1px;
+        transition: text-decoration-thickness ease 0.1s; 
+    }
+    
+    .underlined-link:hover {
+        color: black;
+        text-decoration-thickness: 2px; 
+    }
+    
+    .underlined-link:focus {
+        color: black!important;
+        text-decoration-thickness: 2px; 
+    }
+    
+    .title--primary {
+        margin: 40px 0;
+    }
+    
+    @media screen and (min-width: 990px) {
+        .title--primary {
+            margin: 20px 0;
+        }
+    }
+</style>
